@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/10/25 18:04:59 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:19:25 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_atoi(char *str)
 	return (nombre * signe);
 }
 
-void	alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config)
+int	alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config)
 {
 	philo = malloc(sizeof(t_thread) * config->num_philosophers);
 	if (!philo)
@@ -52,4 +52,5 @@ void	alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config)
 		free(philo);
 		return (1);
 	}
+	return (0);
 }

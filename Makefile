@@ -18,6 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC = philo.c				\
 		philo_parsing.c		\
 		philo_utils.c		\
+		init.c			\
 
 
 OBJ = $(SRC:.c=.o)
