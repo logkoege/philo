@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/10/28 00:03:05 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:22:24 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ int	init_mutex(pthread_mutex_t *forks, int num_philosophers)
 	i = 0;
 	while (i < num_philosophers)
 	{
-		printf("%d\n" , num_philosophers);
 		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
 			printf("Error -> mutex init failed\n");
 			return (1);
 		}
-		printf("lal\n");
 		i++;
 	}
 	return (0);
@@ -45,10 +43,14 @@ int	init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 	int	i;
 
 	i = 0;
+	printf("0\n");
 	while (i < config->num_philosophers)
 	{
+		printf("1\n");
 		philo[i].id = i + 1;
+		printf("2\n");
 		philo[i].left_fork = &forks[i];
+		printf("3\n");
 		philo[i].right_fork = &forks[(i + 1) % config->num_philosophers];
 		philo[i].start_time = 0;
 		philo[i].meals_eaten = 0;
