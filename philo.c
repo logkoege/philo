@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/06 17:10:10 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:33:20 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 		free(forks);
 		return (1);
 	}
-	printf("3\n");
 	if (init_philo(philo, &config, forks))
 	{
 		free(philo);

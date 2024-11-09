@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/10/28 00:10:20 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:33:15 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_thread
 	t_config			*config;		// Pointeur vers la configuration
 }	t_thread;
 
-
-
 // philo_utils.c
 int		ft_atoi(char *str);
 int		alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config);
@@ -54,6 +52,5 @@ int		pars_arg(int argc, char **argv, t_config *config);
 int		init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks);
 int		init_mutex(pthread_mutex_t *forks, int num_philosophers);
 void	init_config(t_config *config);
-void	*philo_routine(void *arg);
 
 #endif

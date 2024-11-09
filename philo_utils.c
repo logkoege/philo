@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/06 16:54:54 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:58:45 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	ft_atoi(char *str)
 
 int	alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config)
 {
-	philo = malloc(sizeof(t_thread) * config->num_philosophers);
+	(*philo) = malloc(sizeof(t_thread) * config->num_philosophers);
 	if (!philo)
 	{
 		printf("Error -> malloc failed\n");
 		return (1);
 	}
-	*forks = malloc(sizeof(pthread_mutex_t) * config->num_philosophers);
+	(*forks) = malloc(sizeof(pthread_mutex_t) * config->num_philosophers);
 	if (!forks)
 	{
 		printf("Error -> malloc failed\n");

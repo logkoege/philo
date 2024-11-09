@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/06 17:22:24 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:34:11 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,39 +43,14 @@ int	init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 	int	i;
 
 	i = 0;
-	printf("0\n");
 	while (i < config->num_philosophers)
 	{
-		printf("1\n");
 		philo[i].id = i + 1;
-		printf("2\n");
 		philo[i].left_fork = &forks[i];
-		printf("3\n");
 		philo[i].right_fork = &forks[(i + 1) % config->num_philosophers];
 		philo[i].start_time = 0;
 		philo[i].meals_eaten = 0;
 		i++;
 	}
 	return (0);
-}
-
-void	*philo_routine(void *arg)
-{
-	t_thread	*philo;
-
-	philo = (t_thread *)arg;
-	while (1)
-	{
-		printf("philo %d is thinking\n", philo->id);
-		usleep(philo->config->time_to_sleep * 1000);
-		pthread_mutex_lock(philo->left_fork);
-		pthread_mutex_lock(philo->right_fork);
-		printf("philo %d is eating\n", philo->id);
-		usleep(philo->config->time_to_eat * 1000);
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
-		printf("philo %d is sleeping\n", philo->id);
-		usleep(philo->config->time_to_sleep * 1000);
-	}
-	return (NULL);
 }
