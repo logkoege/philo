@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/08 14:58:45 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:44:38 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,22 @@ int	alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config)
 		printf("Error -> malloc failed\n");
 		return (1);
 	}
+	config->p = 1;
 	(*forks) = malloc(sizeof(pthread_mutex_t) * config->num_philosophers);
 	if (!forks)
 	{
 		printf("Error -> malloc failed\n");
-		free(philo);
+		free_fp(*philo, *forks, config);
 		return (1);
 	}
+	config->f = 1;
 	return (0);
+}
+
+void	free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config)
+{
+	if (config->p)
+		free(philo);
+	if (config->f)
+		free(forks);
 }

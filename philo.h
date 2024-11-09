@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/08 16:33:15 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:44:43 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 // Structure de configuration de la simulation
 typedef struct s_config
 {
+	int	p;					// = 1 so philo est malloc, 0 si non
+	int	f;					// = 1 so forks est malloc, 0 si non
 	int	num_philosophers;	// Nombre de philosophes
 	int	time_to_die;		// Temps avant de mourir
 	int	time_to_eat;		// Temps pour manger
@@ -44,6 +46,7 @@ typedef struct s_thread
 // philo_utils.c
 int		ft_atoi(char *str);
 int		alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config);
+void	free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config);
 
 // philo_parsing.c
 int		pars_arg(int argc, char **argv, t_config *config);
@@ -52,5 +55,6 @@ int		pars_arg(int argc, char **argv, t_config *config);
 int		init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks);
 int		init_mutex(pthread_mutex_t *forks, int num_philosophers);
 void	init_config(t_config *config);
+int		init(t_thread *philo, t_config *config, pthread_mutex_t *forks);
 
 #endif

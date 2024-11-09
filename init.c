@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/08 16:34:11 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:37:57 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_config(t_config *config)
 {
+	config->p = 0;
+	config->f = 0;
 	config->num_philosophers = 0;
 	config->time_to_die = 0;
 	config->time_to_eat = 0;
@@ -52,5 +54,14 @@ int	init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 		philo[i].meals_eaten = 0;
 		i++;
 	}
+	return (0);
+}
+
+int	init(t_thread *philo, t_config *config, pthread_mutex_t *forks)
+{
+	if (init_mutex(forks, config->num_philosophers))
+		return (1);
+	if (init_philo(philo, config, forks))
+		return (1);
 	return (0);
 }

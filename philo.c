@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/08 16:33:20 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/09 17:43:11 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,14 @@ int	main(int argc, char **argv)
 	init_config(&config);
 	if (pars_arg(argc, argv, &config))
 		return (1);
-	if (alloc(&philo, &forks, &config) == 1)
+	if (alloc(&philo, &forks, &config))
 		return (1);
-	if (init_mutex(forks, config.num_philosophers))
+	if (init(philo, &config, forks))
 	{
-		free(philo);
-		free(forks);
+		free_fp(philo, forks, &config);
 		return (1);
 	}
-	if (init_philo(philo, &config, forks))
-	{
-		free(philo);
-		free(forks);
-		return (1);
-	}
-	free(philo);
-	free(forks);
+	free_fp(philo, forks, &config);
+	printf("tout bon\n");
 	return (0);
 }
