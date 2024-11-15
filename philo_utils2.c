@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 19:18:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/15 16:24:15 by logkoege         ###   ########.fr       */
+/*   Created: 2024/11/15 16:26:42 by logkoege          #+#    #+#             */
+/*   Updated: 2024/11/15 17:30:15 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+long long	get_time(void)
 {
-	t_config		config;
-	t_thread		*philo;
-	pthread_mutex_t	*forks;
+	struct timeval	time;
 
-	init_config(&config);
-	if (pars_arg(argc, argv, &config))
-		return (1);
-	if (alloc(&philo, &forks, &config))
-		return (1);
-	if (init(philo, &config, forks))
-	{
-		free_fp(philo, forks, &config);
-		return (1);
-	}
-	init_thread(&philo, forks, &config);
-	free_fp(philo, forks, &config);
-	return (0);
+	if (gettimeofday(&time, NULL) == -1)
+		write(2, "gettimeofday() error\n", 22);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/09 17:44:43 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:35:32 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 // Structure de configuration de la simulation
 typedef struct s_config
@@ -44,17 +45,22 @@ typedef struct s_thread
 }	t_thread;
 
 // philo_utils.c
-int		ft_atoi(char *str);
-int		alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config);
-void	free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config);
+int			ft_atoi(char *str);
+int			alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config);
+void		free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config);
+void		init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config);
 
 // philo_parsing.c
-int		pars_arg(int argc, char **argv, t_config *config);
+int			pars_arg(int argc, char **argv, t_config *config);
 
 // init.c
-int		init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks);
-int		init_mutex(pthread_mutex_t *forks, int num_philosophers);
-void	init_config(t_config *config);
-int		init(t_thread *philo, t_config *config, pthread_mutex_t *forks);
+int			init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks);
+int			init_mutex(pthread_mutex_t *forks, int num_philosophers);
+void		init_config(t_config *config);
+int			init(t_thread *philo, t_config *config, pthread_mutex_t *forks);
+
+//philo_utils2.c
+long long	get_time(void)
+
 
 #endif

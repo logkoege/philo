@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/09 17:44:38 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:30:06 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ void	free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config)
 		free(philo);
 	if (config->f)
 		free(forks);
+}
+void	init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config)
+{
+	int	i;
+	
+	i = 0;
+	while (i < config->num_philosophers)
+	{
+		pthread_create(&(*philo)[i].thread, NULL, &philo_routine, &philo[i]);
+		i++;
+	}
+}
+
+void	philo_routine(void *arg)
+{
+	t_thread *philo = (t_thread*) arg;
 }
