@@ -6,7 +6,7 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 05:41:14 by logkoege          #+#    #+#              #
-#    Updated: 2024/10/19 19:18:57 by logkoege         ###   ########.fr        #
+#    Updated: 2024/11/18 13:21:42 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CFLAGS = -Wall -Wextra -Werror
 SRC = philo.c				\
 		philo_parsing.c		\
 		philo_utils.c		\
-		init.c			\
+		init.c				\
+		philo_things.c		\
+		philo_utils2.c		\
 
 
 OBJ = $(SRC:.c=.o)

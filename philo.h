@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/15 17:35:32 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:18:51 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,27 @@ typedef struct s_thread
 int			ft_atoi(char *str);
 int			alloc(t_thread **philo, pthread_mutex_t **forks, t_config *config);
 void		free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config);
-void		init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config);
+void		init_thread(t_thread **philo, pthread_mutex_t *forks,
+				t_config *config);
+void		*philo_routine(void *arg);
 
 // philo_parsing.c
 int			pars_arg(int argc, char **argv, t_config *config);
 
 // init.c
-int			init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks);
+int			init_philo(t_thread *philo, t_config *config,
+				pthread_mutex_t *forks);
 int			init_mutex(pthread_mutex_t *forks, int num_philosophers);
 void		init_config(t_config *config);
 int			init(t_thread *philo, t_config *config, pthread_mutex_t *forks);
 
 //philo_utils2.c
-long long	get_time(void)
+long long	get_time(void);
+int			ft_usleep(long int time);
 
+// philo_things.c
+int			philo_eating(t_thread *philo);
+int			philo_sleeping(t_thread *philo);
+int			philo_thinking(t_thread *philo);
 
 #endif

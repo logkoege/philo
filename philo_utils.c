@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/15 18:30:06 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:37:28 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,41 @@ void	free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config)
 	if (config->f)
 		free(forks);
 }
+
 void	init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < config->num_philosophers)
 	{
-		pthread_create(&(*philo)[i].thread, NULL, &philo_routine, &philo[i]);
+		printf("test2\n");
+		if (pthread_create(&(*philo)[i].thread, NULL, &philo_routine,
+			&(*philo)[i]) != 0)
+		{
+			printf("Error -> thread creation failed for philosopher %d\n", i);
+			free_fp(*philo, forks, config);
+		}
+		printf("test3\n");
 		i++;
 	}
 }
 
-void	philo_routine(void *arg)
+void	*philo_routine(void *arg)
 {
-	t_thread *philo = (t_thread*) arg;
+	t_thread	*philo;
+
+	philo = (t_thread *) arg;
+	if (philo->id % 2 == 0)
+		usleep((philo->config->time_to_eat * 1000) / 2);
+	while (1)
+	{
+		if (philo_thinking(philo))
+			return (NULL);
+		if (philo_eating(philo))
+			return (NULL);
+		if (philo_sleeping(philo))
+			return (NULL);
+	}
+	return (NULL);
 }

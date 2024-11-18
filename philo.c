@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/15 16:24:15 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:37:49 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	main(int argc, char **argv)
 	t_config		config;
 	t_thread		*philo;
 	pthread_mutex_t	*forks;
+	int				i;
 
+	i = 0;
 	init_config(&config);
 	if (pars_arg(argc, argv, &config))
 		return (1);
@@ -28,7 +30,14 @@ int	main(int argc, char **argv)
 		free_fp(philo, forks, &config);
 		return (1);
 	}
+	printf("Sim\n");
 	init_thread(&philo, forks, &config);
+	printf("Sam\n");
+	while (i < config.num_philosophers)
+	{
+		pthread_join(philo[i].thread, NULL);
+		i++;
+	}
 	free_fp(philo, forks, &config);
 	return (0);
 }
