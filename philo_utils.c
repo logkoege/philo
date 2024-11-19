@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/19 14:36:31 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/19 18:10:46 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,13 @@ void	*philo_routine(void *arg)
 		usleep((philo->config->time_to_eat * 1000) / 2);
 	while (1)
 	{
+		if (philo_is_alive(&philo) == 1)
+	{
+		printf_lock(philo, "is dead\n");
+		philo->config->dead = 1;
+		exit(EXIT_SUCCESS); //probleme
+		return (NULL);
+	}
 		if (philo_thinking(philo))
 			return (NULL);
 		if (philo_eating(philo))

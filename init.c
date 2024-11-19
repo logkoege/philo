@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/19 13:44:46 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:57:58 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	init_config(t_config *config)
 	config->time_to_eat = 0;
 	config->time_to_sleep = 0;
 	config->num_meals = 0;
+	pthread_mutex_init(&config->printf, NULL);
+	pthread_mutex_init(&config->status, NULL);
+	config->dead = 0;
 }
 
 int	init_mutex(pthread_mutex_t *forks, int num_philosophers)

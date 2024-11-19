@@ -6,14 +6,14 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 05:41:14 by logkoege          #+#    #+#              #
-#    Updated: 2024/11/18 13:21:42 by logkoege         ###   ########.fr        #
+#    Updated: 2024/11/19 17:26:55 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=thread 	
 
 SRC = philo.c				\
 		philo_parsing.c		\
