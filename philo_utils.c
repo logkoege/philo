@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/18 13:37:28 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:36:31 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,15 @@ void	init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config)
 	int	i;
 
 	i = 0;
+	config->start_time = get_time();
 	while (i < config->num_philosophers)
 	{
-		printf("test2\n");
 		if (pthread_create(&(*philo)[i].thread, NULL, &philo_routine,
 			&(*philo)[i]) != 0)
 		{
 			printf("Error -> thread creation failed for philosopher %d\n", i);
 			free_fp(*philo, forks, config);
 		}
-		printf("test3\n");
 		i++;
 	}
 }

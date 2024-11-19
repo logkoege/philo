@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/18 13:18:51 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:43:26 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_config
 	int	time_to_eat;		// Temps pour manger
 	int	time_to_sleep;		// Temps pour dormir
 	int	num_meals;			// Nombre de repas
+	long long start_time;
 }	t_config;
 
 // Structure représentant un philosophe
@@ -39,7 +40,6 @@ typedef struct s_thread
 	pthread_t			thread;			// Thread du philosophe
 	pthread_mutex_t		*left_fork;		// Pointeur vers la fourchette gauche
 	pthread_mutex_t		*right_fork;	// Pointeur vers la fourchette droite
-	long long			start_time;		// Temps de début
 	int					meals_eaten;	// Nombre de repas mangés
 	t_config			*config;		// Pointeur vers la configuration
 }	t_thread;

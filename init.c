@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/09 17:37:57 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:44:46 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 		philo[i].id = i + 1;
 		philo[i].left_fork = &forks[i];
 		philo[i].right_fork = &forks[(i + 1) % config->num_philosophers];
-		philo[i].start_time = 0;
+		philo[i].config = config;
 		philo[i].meals_eaten = 0;
 		i++;
 	}
