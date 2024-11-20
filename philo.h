@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/19 17:55:03 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:43:55 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 typedef struct s_config
 {
 	int dead;
+	int	j;
+	int	i;
 	int	p;					// = 1 so philo est malloc, 0 si non
 	int	f;					// = 1 so forks est malloc, 0 si non
 	int	num_philosophers;	// Nombre de philosophes
@@ -33,6 +35,7 @@ typedef struct s_config
 	long long	last_meal;			// Dernier repas mange (temps)
 	pthread_mutex_t status;
 	pthread_mutex_t printf;
+	pthread_mutex_t dead_mutex;
 	int	num_meals;			// Nombre de repas
 	long long start_time;
 }	t_config;
@@ -69,6 +72,10 @@ int			init(t_thread *philo, t_config *config, pthread_mutex_t *forks);
 //philo_utils2.c
 long long	get_time(void);
 int			ft_usleep(long int time);
+int			is_alive(t_thread *philo);
+void		while_dead_0(t_thread *philo, t_config *config);
+
+
 
 // philo_things.c
 int			philo_eating(t_thread *philo);

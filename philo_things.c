@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:07 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/19 18:06:01 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:52:41 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 int	philo_eating(t_thread *philo)
 {
+	if (is_alive(philo) == 1)
+	{
+		philo->config->dead = 1;
+		return (1);
+	}
 	pthread_mutex_lock(philo->left_fork);
-	pthread_mutex_lock(philo->right_fork);
 	printf_lock(philo, "has taken a fork\n");
+	pthread_mutex_lock(philo->right_fork);
 	printf_lock(philo, "has taken a fork\n");
 	printf_lock(philo, "is eating\n");
 	ft_usleep(philo->config->time_to_eat);
@@ -30,6 +35,11 @@ int	philo_eating(t_thread *philo)
 
 int	philo_sleeping(t_thread *philo)
 {
+	if (is_alive(philo) == 1)
+	{
+		philo->config->dead = 1;
+		return (1);
+	}
 	printf_lock(philo, "is sleeping\n");
 	ft_usleep(philo->config->time_to_sleep);
 	return (0);
@@ -37,6 +47,11 @@ int	philo_sleeping(t_thread *philo)
 
 int	philo_thinking(t_thread *philo)
 {
+	if (is_alive(philo) == 1)
+	{
+		philo->config->dead = 1;
+		return (1);
+	}
 	printf_lock(philo, "is thinking\n");
 	return (0);
 }
@@ -45,8 +60,7 @@ int	philo_is_alive(t_thread **philo)
 {
 	//printf("last meal -> %lld\n", (*philo)->config->last_meal);
 	//printf("actual time -> %lld\n", get_time() - (*philo)->config->start_time);
-	//printf("time to di -> %d\n", (*philo)->config->time_to_die);
-	
+	//printf("time to die -> %d\n", (*philo)->config->time_to_die);
 	if (get_time() - (*philo)->config->start_time - (*philo)->config->last_meal >= (*philo)->config->time_to_die)
 		return (1);
 	return (0);
