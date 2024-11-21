@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/20 15:50:14 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:40:14 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_config(t_config *config)
 {
+	config->check_meals = 0;
 	config->i = -1;
 	config->j = -1;
 	config->p = 0;
@@ -27,8 +28,8 @@ void	init_config(t_config *config)
 	pthread_mutex_init(&config->printf, NULL);
 	pthread_mutex_init(&config->status, NULL);
 	pthread_mutex_init(&config->dead_mutex, NULL);
+	pthread_mutex_init(&config->meal, NULL);
 	config->dead = 0;
-	
 }
 
 int	init_mutex(pthread_mutex_t *forks, int num_philosophers)
@@ -56,7 +57,6 @@ int	init_philo(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 	while (i < config->num_philosophers)
 	{
 		philo[i].id = i + 1;
-		
 		philo[i].left_fork = &forks[i];
 		if (i < config->num_philosophers - 1)
 			philo[i].right_fork = &forks[(i + 1)];

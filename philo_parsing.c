@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 18:47:03 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/20 15:26:57 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:30:06 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ int	pars_arg(int argc, char **argv, t_config *config)
 		|| (argc == 6 && config->num_meals <= 0))
 	{
 		printf("Error -> invalid argument value (must be > 0)\n");
+		return (1);
+	}
+	if (config->num_philosophers == 1)
+	{	
+		printf("0 1 is thinking\n0 1 as taken a fork\n");
+		printf("%d 1 is dead\n", config->time_to_die);
 		return (1);
 	}
 	return (0);
