@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:07 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/21 15:19:40 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:15:22 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,12 @@ int	philo_eating(t_thread *philo)
 		philo->config->dead = 1;
 		return (1);
 	}
-	pthread_mutex_lock(philo->left_fork);
-	if (printf_lock(philo, "has taken a fork\n") == 1)
+	if (fork_muting(philo) == 1)
 		return (1);
-	pthread_mutex_lock(philo->right_fork);
-	if (printf_lock(philo, "has taken a fork\n") == 1)
-		return (1);
-	if (printf_lock(philo, "is eating\n") == 1)
-		return (1);
-	ft_usleep(philo->config->time_to_eat);
 	pthread_mutex_lock(&philo->config->status);
 	philo->config->last_meal = get_time() - philo->config->start_time;
 	pthread_mutex_unlock(&philo->config->status);
+	ft_usleep(philo->config->time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	return (0);

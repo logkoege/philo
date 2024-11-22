@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:26:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/21 15:20:23 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:14:38 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_usleep(long int time)
 
 	start_time = get_time();
 	while ((get_time() - start_time) < time)
-		usleep(1);
+		usleep(150);
 	return (150);
 }
 
@@ -60,11 +60,13 @@ void	while_dead_0(t_thread *philo, t_config *config)
 /*int nb_of_meal(t_thread *philo)
 {
 	pthread_mutex_lock(&philo->config->meal);
-	if (philo->config->check_meals / philo->config->num_philosophers != philo->config->num_meals) 
+	if (philo->config->check_meals / philo->config->num_philosophers
+		!= philo->config->num_meals) 
 	{
 		
 		philo->config->check_meals++;
-		printf("%d\n", philo->config->check_meals / philo->config->num_philosophers);
+		printf("%d\n", philo->config->check_meals
+			/ philo->config->num_philosophers);
 		pthread_mutex_unlock(&philo->config->meal);
 		return (0);
 	}
