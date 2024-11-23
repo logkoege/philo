@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:26:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/22 19:14:38 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:09:16 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long long	get_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
+		printf("Error -> gettimeofday()\n");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
@@ -61,9 +61,8 @@ void	while_dead_0(t_thread *philo, t_config *config)
 {
 	pthread_mutex_lock(&philo->config->meal);
 	if (philo->config->check_meals / philo->config->num_philosophers
-		!= philo->config->num_meals) 
+		!= philo->config->num_meals)
 	{
-		
 		philo->config->check_meals++;
 		printf("%d\n", philo->config->check_meals
 			/ philo->config->num_philosophers);

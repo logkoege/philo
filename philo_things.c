@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:07 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/22 19:15:22 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:24:14 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	philo_eating(t_thread *philo)
 	pthread_mutex_lock(&philo->config->status);
 	philo->config->last_meal = get_time() - philo->config->start_time;
 	pthread_mutex_unlock(&philo->config->status);
+	//if (nb_of_meal(philo) == 1)
+	//	return (1);
 	ft_usleep(philo->config->time_to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);

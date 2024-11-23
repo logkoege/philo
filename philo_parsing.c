@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 18:47:03 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/22 19:48:45 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:19:07 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,19 @@ int	fork_muting(t_thread *philo)
 	pthread_mutex_lock(philo->left_fork);
 	if (printf_lock(philo, "has taken a fork\n") == 1)
 		return (1);
+	if (is_alive(philo) == 1)
+	{
+		philo->config->dead = 1;
+		return (1);
+	}
 	pthread_mutex_lock(philo->right_fork);
 	if (printf_lock(philo, "has taken a fork\n") == 1)
 		return (1);
+	if (is_alive(philo) == 1)
+	{
+		philo->config->dead = 1;
+		return (1);
+	}
 	if (printf_lock(philo, "is eating\n") == 1)
 		return (1);
 	return (0);
