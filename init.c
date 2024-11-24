@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/22 12:18:07 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/24 07:44:17 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,23 @@ int	init(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 	if (init_philo(philo, config, forks))
 		return (1);
 	return (0);
+}
+
+void	end_it(t_thread **philo, pthread_mutex_t	*forks)
+{
+	int	i;
+
+	i = 0;
+	printf("bfor while\n");
+	while (i < (*philo)->config->num_philosophers)
+	{
+		pthread_join((*philo)[i].thread, NULL);
+		//pthread_mutex_destroy(left_fork);
+		//pthread_mutex_destroy(right_fork);
+		i++;
+	}
+	pthread_mutex_destroy(&(**philo).config->printf);
+	pthread_mutex_destroy(&(**philo).config->status);
+	pthread_mutex_destroy(&(**philo).config->dead_mutex);
+	free_fp((*philo), forks, (*philo)->config);
 }

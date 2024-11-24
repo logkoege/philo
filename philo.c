@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/23 17:09:54 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/11/24 07:33:41 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	main(int argc, char **argv)
 	}
 	init_thread(&philo, forks, &config);
 	while_dead_0(philo, &config);
-	while (++config.i < config.num_philosophers)
-		pthread_join(philo[config.i].thread, NULL);
-	free_fp(philo, forks, &config);
+	end_it(&philo, forks);
+	printf("Simulation ended\n");
 	return (0);
 }
