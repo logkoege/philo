@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:26:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/23 18:09:16 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:54:32 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_usleep(long int time)
 
 int	is_alive(t_thread *philo)
 {
-	if (philo_is_alive(&philo) == 1)
+	if (philo_is_alive(philo) == 1)
 	{
 		printf_lock(philo, "is dead\n");
 		pthread_mutex_lock(&(philo->config->dead_mutex));
@@ -44,14 +44,14 @@ int	is_alive(t_thread *philo)
 	return (0);
 }
 
-void	while_dead_0(t_thread *philo, t_config *config)
+void	while_dead_0(t_thread **philo, t_config *config)
 {
 	while (config->dead == 0)
 	{
 		config->j = -1;
 		while (++config->j < config->num_philosophers)
 		{
-			if (is_alive(&philo[config->j]))
+			if (is_alive(&(*philo)[config->j]))
 				break ;
 		}
 	}

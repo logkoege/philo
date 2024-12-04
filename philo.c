@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/24 07:33:41 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:54:20 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_thread(&philo, forks, &config);
-	while_dead_0(philo, &config);
+	while_dead_0(&philo, &config);
 	end_it(&philo, forks);
-	printf("Simulation ended\n");
+	printf("fin\n");
 	return (0);
 }

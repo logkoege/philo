@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 18:47:03 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/24 07:23:41 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:03:19 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	if_1_philo(t_config *config)
 	{
 		printf("0 1 is thinking\n");
 		printf("0 1 as taken a fork\n");
-		printf("%d 1 is dead\n", config->time_to_die);
+		printf("%lld 1 is dead\n", config->time_to_die);
 		return (1);
 	}
 	return (0);
@@ -51,19 +51,26 @@ int	if_1_philo(t_config *config)
 
 int	fork_muting(t_thread *philo)
 {
+	if (is_alive(philo))
+		return 		philo->config->dead = 1, 1;	
 	pthread_mutex_lock(philo->left_fork);
 	if (printf_lock(philo, "has taken a fork\n") == 1)
 		return (1);
 	if (is_alive(philo) == 1)
 	{
+		pthread_mutex_unlock(philo->left_fork);
 		philo->config->dead = 1;
 		return (1);
 	}
+	if (is_alive(philo))
+		return 		philo->config->dead = 1, 1;	
 	pthread_mutex_lock(philo->right_fork);
 	if (printf_lock(philo, "has taken a fork\n") == 1)
 		return (1);
 	if (is_alive(philo) == 1)
 	{
+		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
 		philo->config->dead = 1;
 		return (1);
 	}

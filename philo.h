@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/24 07:28:54 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:51:34 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_config
 	int				p;					// = 1 so philo est malloc, 0 si non
 	int				f;					// = 1 so forks est malloc, 0 si non
 	int				num_philosophers;	// Nombre de philo
-	int				time_to_die;		// Temps avant de mourir
+	long long		time_to_die;		// Temps avant de mourir
 	int				time_to_eat;		// Temps pour manger
 	int				time_to_sleep;		// Temps pour dormir
 	long long		last_meal;			// Dernier repas mangé (temps)
@@ -78,14 +78,14 @@ void		end_it(t_thread **philo, pthread_mutex_t	*forks);
 long long	get_time(void);
 int			ft_usleep(long int time);
 int			is_alive(t_thread *philo);
-void		while_dead_0(t_thread *philo, t_config *config);
+void		while_dead_0(t_thread **philo, t_config *config);
 //int			nb_of_meal(t_thread *philo);
 
 // philo_things.c
 int			philo_eating(t_thread *philo);
 int			philo_sleeping(t_thread *philo);
 int			philo_thinking(t_thread *philo);
-int			philo_is_alive(t_thread **philo);
+int			philo_is_alive(t_thread *philo);
 int			printf_lock(t_thread *philo, char *msg);
 
 #endif
