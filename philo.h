@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/04 16:51:34 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/10 11:24:52 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			init_philo(t_thread *philo, t_config *config,
 int			init_mutex(pthread_mutex_t *forks, int num_philosophers);
 void		init_config(t_config *config);
 int			init(t_thread *philo, t_config *config, pthread_mutex_t *forks);
-void		end_it(t_thread **philo, pthread_mutex_t	*forks);
+int			end_it(t_thread **philo, pthread_mutex_t	*forks);
 
 //philo_utils2.c
 long long	get_time(void);

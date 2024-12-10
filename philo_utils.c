@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/11/23 17:43:58 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:25:50 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	ft_atoi(char *str)
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			signe = -signe;
+		signe = -signe;
 		i++;
 	}
 	while (str[i] && (str[i] <= '9' && str[i] >= '0'))
@@ -34,6 +33,8 @@ int	ft_atoi(char *str)
 		nombre = nombre * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i])
+		return (-1);
 	return (nombre * signe);
 }
 

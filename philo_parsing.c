@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 18:47:03 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/04 17:03:19 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:11:13 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ int	if_1_philo(t_config *config)
 
 int	fork_muting(t_thread *philo)
 {
-	if (is_alive(philo))
-		return 		philo->config->dead = 1, 1;	
 	pthread_mutex_lock(philo->left_fork);
 	if (printf_lock(philo, "has taken a fork\n") == 1)
 		return (1);
@@ -62,8 +60,6 @@ int	fork_muting(t_thread *philo)
 		philo->config->dead = 1;
 		return (1);
 	}
-	if (is_alive(philo))
-		return 		philo->config->dead = 1, 1;	
 	pthread_mutex_lock(philo->right_fork);
 	if (printf_lock(philo, "has taken a fork\n") == 1)
 		return (1);
@@ -76,5 +72,6 @@ int	fork_muting(t_thread *philo)
 	}
 	if (printf_lock(philo, "is eating\n") == 1)
 		return (1);
+	//printf("TIME ALIVE == %lld\n", get_time() - philo->config->start_time - philo->config->last_meal);
 	return (0);
 }

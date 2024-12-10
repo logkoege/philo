@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 16:26:42 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/04 16:54:32 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:45:18 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,22 @@ long long	get_time(void)
 
 int	ft_usleep(long int time)
 {
-	long int	start_time;
+	//long int	start_time;
 
-	start_time = get_time();
-	while ((get_time() - start_time) < time)
-		usleep(150);
-	return (150);
+	//start_time = get_time();
+	//while ((get_time() - start_time) < time)
+	usleep(time * 1000);
+	return (0);
 }
 
 int	is_alive(t_thread *philo)
 {
+	if (philo->config->dead == 1)
+		return (1);
 	if (philo_is_alive(philo) == 1)
 	{
+		printf("DEAD\n");
+		exit(0);
 		printf_lock(philo, "is dead\n");
 		pthread_mutex_lock(&(philo->config->dead_mutex));
 		philo->config->dead = 1;
@@ -52,7 +56,7 @@ void	while_dead_0(t_thread **philo, t_config *config)
 		while (++config->j < config->num_philosophers)
 		{
 			if (is_alive(&(*philo)[config->j]))
-				break ;
+				return ;
 		}
 	}
 }

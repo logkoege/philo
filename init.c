@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/04 15:11:33 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:57:31 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_config(t_config *config)
 	pthread_mutex_init(&config->status, NULL);
 	pthread_mutex_init(&config->dead_mutex, NULL);
 	pthread_mutex_init(&config->meal, NULL);
-	config->dead = 0;
+	config = 0;
 }
 
 int	init_mutex(pthread_mutex_t *forks, int num_philosophers)
@@ -78,7 +78,7 @@ int	init(t_thread *philo, t_config *config, pthread_mutex_t *forks)
 	return (0);
 }
 
-void	end_it(t_thread **philo, pthread_mutex_t	*forks)
+int		end_it(t_thread **philo, pthread_mutex_t	*forks)
 {
 	int	i;
 
@@ -94,4 +94,7 @@ void	end_it(t_thread **philo, pthread_mutex_t	*forks)
 	pthread_mutex_destroy(&(**philo).config->status);
 	pthread_mutex_destroy(&(**philo).config->dead_mutex);
 	free_fp((*philo), forks, (*philo)->config);
+	if (!philo_routine((*philo)))
+		return (1);
+	return (0);
 }
