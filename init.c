@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:42:02 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/10 13:57:31 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:37:13 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,5 @@ int		end_it(t_thread **philo, pthread_mutex_t	*forks)
 	pthread_mutex_destroy(&(**philo).config->status);
 	pthread_mutex_destroy(&(**philo).config->dead_mutex);
 	free_fp((*philo), forks, (*philo)->config);
-	if (!philo_routine((*philo)))
-		return (1);
 	return (0);
 }
