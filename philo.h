@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:10:53 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/10 11:24:52 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:12:02 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_config
 	long long		time_to_die;		// Temps avant de mourir
 	int				time_to_eat;		// Temps pour manger
 	int				time_to_sleep;		// Temps pour dormir
-	long long		last_meal;			// Dernier repas mangé (temps)
+	//long long		last_meal;			// Dernier repas mangé (temps)
 	pthread_mutex_t	status;				// Autre mutex pour les repas
 	pthread_mutex_t	printf;				// Mutex pour les printf
 	pthread_mutex_t	dead_mutex;			// Mutex pour la mort
@@ -45,6 +45,7 @@ typedef struct s_config
 // Struct philo
 typedef struct s_thread
 {
+	long long		last_meal;
 	int				id;				// Identifiant du philosophe
 	pthread_t		thread;			// Thread du philosophe
 	pthread_mutex_t	*left_fork;		// Fourchette gauche

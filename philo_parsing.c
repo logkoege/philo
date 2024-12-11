@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 18:47:03 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/10 17:11:13 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:07:24 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ int	fork_muting(t_thread *philo)
 		return (1);
 	if (is_alive(philo) == 1)
 	{
-		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
 		philo->config->dead = 1;
 		return (1);
 	}
 	if (printf_lock(philo, "is eating\n") == 1)
 		return (1);
+	printf(" philo n %i gettime %lld - philo->config->start_time  %llu - philo->config lastmeal %llu dernier repas apres manger-> %llu\n",philo->id, get_time(), philo->config->start_time, philo->config->last_meal, (get_time() - philo->config->start_time) - philo->config->last_meal);
 	//printf("TIME ALIVE == %lld\n", get_time() - philo->config->start_time - philo->config->last_meal);
 	return (0);
 }

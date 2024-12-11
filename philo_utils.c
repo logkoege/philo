@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 19:18:48 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/10 14:25:50 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:10:37 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	free_fp(t_thread *philo, pthread_mutex_t *forks, t_config *config)
 		free(forks);
 }
 
-void	init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config)
+void	printf(" philo n %i gettime %lld - philo->config->start_time  %llu - philo->config lastmeal %llu dernier repas apres manger-> %llu\n",philo->id, get_time(), philo->config->start_time, philo->config->last_meal, (get_time() - philo->config->start_time) - philo->config->last_meal);init_thread(t_thread **philo, pthread_mutex_t *forks, t_config *config)
 {
 	int	i;
 

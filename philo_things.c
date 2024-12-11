@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:07 by logkoege          #+#    #+#             */
-/*   Updated: 2024/12/11 16:21:24 by logkoege         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:07:06 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	philo_eating(t_thread *philo)
 	
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
-	printf("dernier repas apres manger-> %lld\n", get_time() - philo->config->start_time - philo->config->last_meal);
+	
 	printf("time_to_die apres manger---> %lld\n", philo->config->time_to_die);
 	return (0);
 }
